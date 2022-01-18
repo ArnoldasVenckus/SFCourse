@@ -12,21 +12,32 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(): Response
-    {
-        return new Response (
-            '<h1>Welcome freeCodeCamp!</h1>'
-        );
+    // public function index(): Response
+    // {
+    //     return new Response (
+    //         '<h1>Welcome freeCodeCamp!</h1>'
+    //     );
+    // }
+
+    public function index() {
+        return $this->render('home/index.html.twig');
     }
 
     /**
      * @Route("/custom/{name?}", name="custom")
      */
 
-    public function custom(Request $request) {
-        $name = $request->get($key = 'name');
-        return new Response(
-            '<h1>Welcome ' . $name . '!</h1>'
-        );
+    // public function custom(Request $request) {
+    //     $name = $request->get($key = 'name');
+    //     return new Response(
+    //         '<h1>Welcome ' . $name . '!</h1>'
+    //     );
+    // }
+
+    public function custom(Request $request){
+        $name = $request->get('name');
+        return $this->render('home/custom.html.twig', [
+            'name' => $name
+        ]);
     }
 }
